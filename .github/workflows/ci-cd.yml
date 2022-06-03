@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: [ development ]
   workflow_dispatch:
+  
+env: 
+  passed_test: 1
 
 jobs:
   Build:
@@ -16,7 +19,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.ref == 'refs/heads/Development'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
@@ -28,7 +31,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: github.event.ref == 'refs/heads/master'
+    if: $passed_test = 1
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
