@@ -31,18 +31,28 @@ jobs:
     steps:
       - name: Deploy to Development
         run: echo ${{ github.event.number }}
-      - name: Create Pull Request
+      - name: Merge Pull Request
         uses: actions/github-script@v6.1.0
         with: 
           script: |
             github.createPullRequest({
-             owner: context.payload.repository.owner.login,
-             repo: context.payload.repository.name,
-             title: github.event.pull_request.name
-             base: "Staging",
-             head: "Development"
+            owner: context.payload.repository.owner.login,
+            repo: context.payload.repository.name,
+            pull_number: context.payload.pullrequest.number
             })
-          github-token: ${{ github.token }}
+          
+      #- name: Create Pull Request
+       # uses: actions/github-script@v6.1.0
+        #with: 
+         # script: |
+          #  github.createPullRequest({
+           #  owner: context.payload.repository.owner.login,
+            # repo: context.payload.repository.name,
+             #title: github.event.pull_request.name
+             #base: "Staging",
+             #head: "Development"
+            #})
+          #github-token: ${{ github.token }}
         
     
   DeployStaging:
