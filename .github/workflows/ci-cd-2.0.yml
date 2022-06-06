@@ -2,6 +2,9 @@ name: CI + CD 2.0
 
 on:
   pull_request:
+  push:
+    branches: 
+      - Development
   workflow_dispatch:
 
 jobs:
