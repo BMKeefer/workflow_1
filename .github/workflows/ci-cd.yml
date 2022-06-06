@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Build
         run: echo The infrastructure has been built!
         
@@ -18,13 +17,12 @@ jobs:
     needs: [Build]
     steps:
       - uses: actions/checkout@v2
-      
       - name: Test
-        run: echo The test passed!
+        run: echo ${{ github.event.pull_request.base.ref }}
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.event.ref == 'refs/head/Development'
+    if: github.event.pull_request.base.ref == 'Development'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
@@ -36,7 +34,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: github.event.ref == 'refs/heads/Staging'
+    if: github.event.pull_request.base.ref == 'Staging'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
