@@ -30,29 +30,19 @@ jobs:
       url: 'http://dev.myapp.com'
     steps:
       - name: Deploy to Development
-        run: echo ${{ github.event.number }}
-      - name: Merge Pull Request
+        run: echo ${{ github.event.number }}    
+      - name: Create Pull Request
         uses: actions/github-script@v6.1.0
         with: 
-          script: |
-            github.pullRequests.merge({
-            owner: context.payload.repository.owner.login,
-            repo: context.payload.repository.name,
-            pull_number: context.payload.pull_request.number
+         script: |
+            github.createPullRequest({
+             owner: context.payload.repository.owner.login,
+             repo: context.payload.repository.name,
+             title: github.event.pull_request.name
+             base: "Staging",
+             head: "Development"
             })
-          
-      #- name: Create Pull Request
-       # uses: actions/github-script@v6.1.0
-        #with: 
-         # script: |
-          #  github.createPullRequest({
-           #  owner: context.payload.repository.owner.login,
-            # repo: context.payload.repository.name,
-             #title: github.event.pull_request.name
-             #base: "Staging",
-             #head: "Development"
-            #})
-          #github-token: ${{ github.token }}
+         github-token: ${{ github.token }}
         
     
   DeployStaging:
