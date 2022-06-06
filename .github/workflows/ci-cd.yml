@@ -2,7 +2,6 @@ name: CI + CD
 
 on:
   pull_request:
-    branches: [ Development ]
   workflow_dispatch:
 
 jobs:
@@ -28,7 +27,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: ${{ github.CI }}
+    if: github.event.ref == 'refs/heads/Staging'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
