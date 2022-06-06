@@ -31,7 +31,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: $PASSED_TEST = 1
+    if: ${{ env.PASSED_TEST == '1' }}
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
