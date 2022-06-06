@@ -38,7 +38,7 @@ jobs:
             github.createPullRequest({
             owner: context.payload.repository.owner.login,
             repo: context.payload.repository.name,
-            pull_number: context.payload.pullrequest.number
+            pull_number: context.payload.pull_request.number
             })
           
       #- name: Create Pull Request
