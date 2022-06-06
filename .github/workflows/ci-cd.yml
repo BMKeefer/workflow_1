@@ -25,7 +25,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.event.ref == 'refs/head/Development'
+    if: github.event.ref == 'refs/heads/Development'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
