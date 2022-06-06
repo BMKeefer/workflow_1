@@ -1,7 +1,6 @@
 name: CI + CD
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
@@ -32,20 +31,20 @@ jobs:
       name: Development
       url: 'http://dev.myapp.com'
     steps:
-      - name: Deploy
+      - name: Deploy to Development
         run: echo ${{ github.event.number }}
     
   DeployStaging:
     name: Deploy to Staging 
     if: github.event.ref == 'refs/heads/Staging'
-    needs: [DeployDev]
+    needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
       name: Staging
       url: 'http://test.myapp.com'
     steps:
-      - name: Deploy
-        run: echo I am deploying! 
+      - name: Delpoy to Staging
+        run: echo I am being staged!
         
             
   DeployProd:
@@ -56,5 +55,5 @@ jobs:
       name: Production
       url: 'http://www.myapp.com'
     steps:
-      - name: Deploy
-        run: echo I am deploying! 
+      - name: Deploy to Staging
+        run: echo I am ready for production! 
