@@ -20,11 +20,11 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Test
-        run: echo ${{ github.event.ref }}
+        run: echo ${{ github.event.pull_request.base.ref }}
     
   DeployDev:
     name: Deploy to Dev 
-    if: ${{ github.event.pull_request.base.ref }} == 'refs/heads/Development'
+    if: ${{ github.event.pull_request.base.ref }} == 'Development'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
@@ -36,7 +36,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: ${{ github.event.pull_request.base.ref }} == 'refs/heads/Staging'
+    if: ${{ github.event.pull_request.base.ref }} == 'Staging'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
