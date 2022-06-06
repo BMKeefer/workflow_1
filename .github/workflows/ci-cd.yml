@@ -4,9 +4,6 @@ on:
   pull_request:
     branches: [ Development ]
   workflow_dispatch:
-  
-env: 
-  PASSED_TEST: 1
 
 jobs:
   Build:
@@ -31,7 +28,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: ${{ env.PASSED_TEST == '1' }}
+    if: ${{ github.CI }}
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
