@@ -43,6 +43,11 @@ jobs:
       name: Staging
       url: 'http://test.myapp.com'
     steps:
+      - name: Wait For Deploy to Dev
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: DeployDev
       - name: Delpoy to Staging
         run: echo I am being staged!
         
