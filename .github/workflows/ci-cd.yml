@@ -31,7 +31,7 @@ jobs:
       url: 'http://dev.myapp.com'
     steps:
       - name: Deploy
-        run: echo ${{ github.event.ref }}
+        run: echo ${{ github.event.number }}
     
   DeployStaging:
     name: Deploy to Staging 
