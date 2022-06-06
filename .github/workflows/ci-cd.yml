@@ -12,14 +12,14 @@ jobs:
 
       - name: Compile
         run: echo The infrastructure has been built!
-        
   Test: 
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       
-      -name: Test
-       if: github.CI
-       run: echo The test passed!
+      - name: Test
+        if: github.CI
+        run: echo The test passed!
     
   DeployDev:
     name: Deploy to Dev 
