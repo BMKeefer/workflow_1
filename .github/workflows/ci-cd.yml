@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Test
-        run: echo ${{ github.event.pull_request.base.ref }}
+        run: echo more $GITHUB_EVENT_PATH
     
   DeployDev:
     name: Deploy to Dev 
