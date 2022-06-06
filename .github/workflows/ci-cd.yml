@@ -40,7 +40,7 @@ jobs:
              repo: context.payload.repository.name,
              title: github.event.pull_request.name
              base: "Staging",
-             head: "Development",
+             head: "Development"
             })
           github-token: ${{ github.token }}
         
