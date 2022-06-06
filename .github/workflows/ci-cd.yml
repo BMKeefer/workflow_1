@@ -24,7 +24,7 @@ jobs:
     
   DeployDev:
     name: Deploy to Dev 
-    if: github.event.ref == 'refs/heads/Development'
+    if: ${{ github.event.pull_request.base.ref }} == 'refs/heads/Development'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
@@ -36,7 +36,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: github.event.ref == 'refs/heads/Staging'
+    if: ${{ github.event.pull_request.base.ref }} == 'refs/heads/Staging'
     needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
