@@ -48,6 +48,7 @@ jobs:
   DeployProd:
     name: Deploy to Production 
     if: github.event.pull_request.base.ref == 'main'
+    needs: [Build, Test]
     runs-on: ubuntu-latest
     environment: 
       name: Production
