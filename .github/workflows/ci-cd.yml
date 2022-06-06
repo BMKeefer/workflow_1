@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   
 env: 
-  passed_test: 1
+  PASSED_TEST: 1
 
 jobs:
   Build:
@@ -31,7 +31,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to Staging 
-    if: $passed_test = 1
+    if: $PASSED_TEST = 1
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
