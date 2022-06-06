@@ -42,6 +42,7 @@ jobs:
              base: "Staging",
              head: "Development",
             })
+          github-token: ${{ github.token }}
         
     
   DeployStaging:
