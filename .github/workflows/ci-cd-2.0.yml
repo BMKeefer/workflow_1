@@ -1,6 +1,6 @@
 name: CI + CD 2.0
 
-on: 
+on:
   pull_request:
   workflow_dispatch:
 
@@ -10,5 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      -name: Testing
-       run: echo Is this working?
+      - name: Compile
+        run: echo Is this working?
