@@ -47,7 +47,7 @@ jobs:
             
   DeployProd:
     name: Deploy to Production 
-    if: gitgub.event.pull_request.base.ref == 'main'
+    if: github.event.pull_request.base.ref == 'main'
     needs: [DeployStaging]
     runs-on: ubuntu-latest
     environment: 
